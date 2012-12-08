@@ -1,0 +1,77 @@
+@font-face {
+  font-family: 'Fredoka One';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/fonts/FredokaOne-Regular.ttf') format('truetype');
+}
+
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/fonts/OpenSans-Regular.ttf') format('truetype');
+}
+
+body {
+    font-family: 'Open Sans';
+    background-color: #5c432e;
+    font-size: 20px;
+}
+
+#titlebar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 150px;
+}
+
+#titlebar h1 {
+    position: relative;
+    font-family: 'Fredoka One';
+    padding: 0 0 0 0;
+    margin: 5px 0 0 5px;
+    top: 5px;
+    left: 5px;
+    width: 40px;
+    height: 80px;
+    color: #FFE181;
+    background-image: url('assets/images/juicy.png');
+    background-size: 100% 100%;
+}
+
+#titlebar h1 span {
+    position: absolute;
+    margin: 0 0 0 0;
+    padding: 20px 0 0 60px;
+    font-size: 30px;
+}
+
+#titlebar h2 {
+    position: absolute;
+    top: 60px;
+    left: 65px;
+    font-size: 13px;
+    color: #EEE9E5;
+    
+}
+
+#titlebar h2 .juicy.juice {
+    color: #FF9C97;
+}
+
+#titlebar h2 .juicy.web {
+    color: #FFE181;
+}
+
+
+#juice {
+    position: absolute;
+    left: 5px;
+    top: 100px;
+    right: 5px;
+    bottom: 5px;
+    background-color: #EEE9E5;
+    border: 1px solid #9f7653;
+}
