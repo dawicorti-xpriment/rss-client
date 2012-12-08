@@ -57,14 +57,34 @@ body {
     
 }
 
-#titlebar h2 .juicy.juice {
+#titlebar h2 .juice {
     color: #FF9C97;
 }
 
-#titlebar h2 .juicy.web {
+#titlebar h2 .web {
     color: #FFE181;
 }
 
+#titlebar .button .label {
+    display: none
+}
+
+#titlebar .quit {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    background-image: url('assets/images/quit.png');
+    background-size: 100% 100%;
+    opacity: 0.2;
+}
+
+#titlebar .quit:hover {
+    opacity: 1;   
+}
 
 #juice {
     position: absolute;

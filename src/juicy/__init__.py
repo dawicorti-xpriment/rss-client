@@ -8,3 +8,8 @@ rootpath = os.path.join(
     path,
     'root'
 )
+
+assetspath = os.path.join(
+    path,
+    'assets'
+)
