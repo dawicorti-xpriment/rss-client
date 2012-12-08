@@ -1,7 +1,7 @@
 import os
 import json
 
-from PyQt4 import QtGui
+from PySide import QtGui
 
 class Config(object):
 

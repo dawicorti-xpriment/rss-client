@@ -7,10 +7,10 @@ sys.path.append(
     )
 )
 
-from PyQt4 import QtGui
-from juicy.ui.history import History
+from PySide import QtGui
+from juicy.ui.mainwindow import MainWindow
 
 app = QtGui.QApplication(sys.argv)
-history = History()
-history.show()
+mainwindow = MainWindow()
+mainwindow.show()
 app.exec_()

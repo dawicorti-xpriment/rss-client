@@ -1,17 +1,19 @@
 import os
 
-from PyQt4 import QtGui
-from PyQt4 import QtCore
-from PyQt4 import QtWebKit
+from PySide import QtGui
+from PySide import QtCore
+from PySide import QtWebKit
 
 import juicy
 from juicy.core.config import config
+from juicy.core.bridge import Bridge
 
 
-class History(QtGui.QMainWindow):
+class MainWindow(QtGui.QMainWindow):
 
     def __init__(self):
-        super(History, self).__init__()
+        super(MainWindow, self).__init__()
+        juicy.mq.run()
         self.tray_icon = QtGui.QSystemTrayIcon(
             QtGui.QIcon(
                 os.path.join(
@@ -51,6 +53,11 @@ class History(QtGui.QMainWindow):
                 ).lstrip('/').replace('\\', '/')
             )
         )
+        self.bridge = Bridge()
+        self.webview.page().mainFrame().addToJavaScriptWindowObject(
+            'bridge',
+            self.bridge
+        )
 
     def resizeEvent(self, event):
         rect = self.geometry()
@@ -67,7 +74,8 @@ class History(QtGui.QMainWindow):
         config.save()
 
     def closeEvent(self, event):
+        juicy.mq.send({'name': 'test'})
         event.ignore()
-        self.hide()
+        #self.hide()
 
 

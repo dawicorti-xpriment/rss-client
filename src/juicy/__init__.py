@@ -1,5 +1,7 @@
 import os
 
+from juicy.core.juicymq import JuicyMQ
+
 path = os.path.abspath(
     os.path.dirname(__file__)
 )
@@ -13,3 +15,5 @@ assetspath = os.path.join(
     path,
     'assets'
 )
+
+mq = JuicyMQ()
