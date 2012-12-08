@@ -1,8 +1,8 @@
 $(function () {
 
-    bridge.on('test', function () {
-        alert('yeah !');
-    });
 
+    $('.button.quit').click(function() {
+        bridge.trigger({name: 'mainwindow:quit'});
+    });
 
 });

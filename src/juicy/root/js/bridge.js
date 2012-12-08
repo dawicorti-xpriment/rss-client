@@ -19,5 +19,10 @@ $(function () {
         bridge.callbacks[name].push(callback);
     };
 
+    bridge.trigger = function (message) {
+        var raw = JSON.stringify(message);
+        bridge.send(raw);
+    };
+
 
 });

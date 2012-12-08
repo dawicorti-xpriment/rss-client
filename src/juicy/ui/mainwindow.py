@@ -40,6 +40,7 @@ class MainWindow(QtGui.QMainWindow):
         self.setMaximumWidth(width)
         self.setMinimumWidth(width)
         self.loadwebview()
+        juicy.mq.listen('mainwindow:quit', self.quit)
 
     def loadwebview(self):
         rect = self.geometry()
@@ -53,10 +54,9 @@ class MainWindow(QtGui.QMainWindow):
                 ).lstrip('/').replace('\\', '/')
             )
         )
-        self.bridge = Bridge()
         self.webview.page().mainFrame().addToJavaScriptWindowObject(
             'bridge',
-            self.bridge
+            Bridge()
         )
 
     def resizeEvent(self, event):
@@ -73,9 +73,11 @@ class MainWindow(QtGui.QMainWindow):
         conf['y'] = rect.y()
         config.save()
 
+    def quit(self, message):
+        QtGui.QApplication.quit()
+
     def closeEvent(self, event):
-        juicy.mq.send({'name': 'test'})
         event.ignore()
-        #self.hide()
+        self.hide()
 
 

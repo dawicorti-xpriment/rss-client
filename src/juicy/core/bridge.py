@@ -19,3 +19,8 @@ class Bridge(QtCore.QObject):
 
     def on_message(self, message):
         self.signal.emit(json.dumps(message))
+
+    @QtCore.Slot(str)
+    def send(self, raw):
+        message = json.loads(raw)
+        juicy.mq.send(message)
