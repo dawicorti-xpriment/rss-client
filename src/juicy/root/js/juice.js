@@ -8,4 +8,6 @@ $(function () {
         bridge.trigger({name: 'pitchersboard:open'});
     });
 
+
+    bridge.trigger({name: 'mainwindow:open'});
 });

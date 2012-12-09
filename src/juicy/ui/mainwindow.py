@@ -43,6 +43,10 @@ class MainWindow(QtGui.QMainWindow):
         self.loadwebview()
         self.pitchers_board = PitchersBoard(self)
         juicy.mq.listen('mainwindow:quit', self.quit)
+        juicy.mq.listen('mainwindow:open', self.open)
+
+    def open(self, message):
+        self.show()
 
     def loadwebview(self):
         rect = self.geometry()

@@ -12,5 +12,4 @@ from juicy.ui.mainwindow import MainWindow
 
 app = QtGui.QApplication(sys.argv)
 mainwindow = MainWindow()
-mainwindow.show()
 app.exec_()
