@@ -42,8 +42,12 @@ class Config(object):
 
 
 config = Config('config.json', {
-    'history': {
+    'mainwindow': {
         'width': 300,
         'height': 600
     },
+    'pitchersboard': {
+        'width': 600,
+        'height': 300
+    }
 })

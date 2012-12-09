@@ -7,6 +7,7 @@ from PySide import QtWebKit
 import juicy
 from juicy.core.config import config
 from juicy.core.bridge import Bridge
+from juicy.ui.pitchersboard import PitchersBoard
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -27,7 +28,7 @@ class MainWindow(QtGui.QMainWindow):
         self.tray_icon.activated.connect(self.show)
         self.tray_icon.show()
         rect = self.geometry()
-        conf = config.get('history')
+        conf = config.get('mainwindow')
         if conf.get('x') is not None:
             rect.setX(conf.get('x'))
         if conf.get('y') is not None:
@@ -40,6 +41,7 @@ class MainWindow(QtGui.QMainWindow):
         self.setMaximumWidth(width)
         self.setMinimumWidth(width)
         self.loadwebview()
+        self.pitchers_board = PitchersBoard(self)
         juicy.mq.listen('mainwindow:quit', self.quit)
 
     def loadwebview(self):
@@ -50,7 +52,7 @@ class MainWindow(QtGui.QMainWindow):
             QtCore.QUrl(
                 'file:///' + os.path.join(
                     juicy.rootpath,
-                    'index.html'
+                    'mainwindow.html'
                 ).lstrip('/').replace('\\', '/')
             )
         )
@@ -62,13 +64,13 @@ class MainWindow(QtGui.QMainWindow):
     def resizeEvent(self, event):
         rect = self.geometry()
         self.webview.setGeometry(0, 0, rect.width(), rect.height())
-        conf = config.get('history')
+        conf = config.get('mainwindow')
         conf['height'] = rect.height()
         config.save()
 
     def moveEvent(self, event):
         rect = self.geometry()
-        conf = config.get('history')
+        conf = config.get('mainwindow')
         conf['x'] = rect.x()
         conf['y'] = rect.y()
         config.save()

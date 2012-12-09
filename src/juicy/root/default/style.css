@@ -15,7 +15,7 @@
 
 body {
     font-family: 'Open Sans';
-    background-color: #5c432e;
+    background-color: #B82C29;
     font-size: 20px;
 }
 
@@ -36,13 +36,13 @@ body {
     left: 5px;
     width: 40px;
     height: 80px;
-    color: #FFE181;
     background-image: url('assets/images/juicy.png');
     background-size: 100% 100%;
 }
 
 #titlebar h1 span {
     position: absolute;
+    color: #FFC200;
     margin: 0 0 0 0;
     padding: 20px 0 0 60px;
     font-size: 30px;
@@ -59,33 +59,44 @@ body {
 }
 
 #titlebar h2 .juice {
-    color: #FF9C97;
+    color: #FFC200;
 }
 
 #titlebar h2 .web {
-    color: #FFE181;
+    color: #FFC200;
+}
+
+#titlebar .button {
+    opacity: 0.2;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    background-size: 100% 100%;
+}
+
+#titlebar .button:hover {
+    opacity: 1; 
 }
 
 #titlebar .button .label {
-    display: none
+    display: none;
 }
 
 #titlebar .quit {
     position: absolute;
     right: 5px;
     top: 5px;
-    width: 20px;
-    height: 20px;
-    margin: 0;
-    padding: 0;
     background-image: url('assets/images/quit.png');
-    background-size: 100% 100%;
-    opacity: 0.2;
 }
 
-#titlebar .quit:hover {
-    opacity: 1;   
+#titlebar .pitchers {
+    position: absolute;
+    right: 30px;
+    top: 5px;
+    background-image: url('assets/images/pitcher.png');
 }
+
 
 #juice {
     position: absolute;
@@ -93,6 +104,6 @@ body {
     top: 100px;
     right: 5px;
     bottom: 5px;
-    background-color: #EEE9E5;
+    background-color: white;
     border: 1px solid #9f7653;
 }
