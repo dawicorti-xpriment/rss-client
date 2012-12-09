@@ -34,8 +34,12 @@ $(function () {
     };
 
     PitchersBoard.prototype.retreiveList = function () {
-
-
+        $.ajax({
+            url: "https://raw.github.com/dawicorti/juicy/master/pitchers.json",
+            dataType: 'jsonp',
+        }).done(function(data) { 
+            console.log(data);
+        });
     };
 
     PitchersBoard.prototype.showList = function () {
