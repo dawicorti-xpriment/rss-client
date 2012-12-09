@@ -7,6 +7,7 @@ from PySide import QtWebKit
 import juicy
 from juicy.core.config import config
 from juicy.core.bridge import Bridge
+from juicy.ui.webpage import WebPage
 
 
 class PitchersBoard(QtGui.QDialog):
@@ -21,6 +22,7 @@ class PitchersBoard(QtGui.QDialog):
     def loadwebview(self):
         rect = self.geometry()
         self.webview = QtWebKit.QWebView(self)
+        self.webview.setPage(WebPage('pitchers-list'))
         self.webview.setGeometry(0, 0, rect.width(), rect.height())
         self.webview.load(
             QtCore.QUrl(

@@ -10,10 +10,10 @@ from juicy.core.bridge import Bridge
 from juicy.ui.pitchersboard import PitchersBoard
 
 
-class MainWindow(QtGui.QMainWindow):
+class Juice(QtGui.QMainWindow):
 
     def __init__(self):
-        super(MainWindow, self).__init__()
+        super(Juice, self).__init__()
         juicy.mq.run()
         self.tray_icon = QtGui.QSystemTrayIcon(
             QtGui.QIcon(
@@ -28,7 +28,7 @@ class MainWindow(QtGui.QMainWindow):
         self.tray_icon.activated.connect(self.show)
         self.tray_icon.show()
         rect = self.geometry()
-        conf = config.get('mainwindow')
+        conf = config.get('juice')
         if conf.get('x') is not None:
             rect.setX(conf.get('x'))
         if conf.get('y') is not None:
@@ -42,8 +42,8 @@ class MainWindow(QtGui.QMainWindow):
         self.setMinimumWidth(width)
         self.loadwebview()
         self.pitchers_board = PitchersBoard(self)
-        juicy.mq.listen('mainwindow:quit', self.quit)
-        juicy.mq.listen('mainwindow:open', self.open)
+        juicy.mq.listen('juice:quit', self.quit)
+        juicy.mq.listen('juice:open', self.open)
 
     def open(self, message):
         self.show()
@@ -56,7 +56,7 @@ class MainWindow(QtGui.QMainWindow):
             QtCore.QUrl(
                 'file:///' + os.path.join(
                     juicy.rootpath,
-                    'mainwindow.html'
+                    'juice.html'
                 ).lstrip('/').replace('\\', '/')
             )
         )
@@ -68,13 +68,13 @@ class MainWindow(QtGui.QMainWindow):
     def resizeEvent(self, event):
         rect = self.geometry()
         self.webview.setGeometry(0, 0, rect.width(), rect.height())
-        conf = config.get('mainwindow')
+        conf = config.get('juice')
         conf['height'] = rect.height()
         config.save()
 
     def moveEvent(self, event):
         rect = self.geometry()
-        conf = config.get('mainwindow')
+        conf = config.get('juice')
         conf['x'] = rect.x()
         conf['y'] = rect.y()
         config.save()

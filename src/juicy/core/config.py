@@ -42,7 +42,7 @@ class Config(object):
 
 
 config = Config('config.json', {
-    'mainwindow': {
+    'juice': {
         'width': 300,
         'height': 600
     },

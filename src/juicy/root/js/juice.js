@@ -1,7 +1,7 @@
 $(function () {
 
     $('.button.quit').click(function() {
-        bridge.trigger({name: 'mainwindow:quit'});
+        bridge.trigger({name: 'juice:quit'});
     });
 
     $('.button.pitchers').click(function() {
@@ -9,5 +9,5 @@ $(function () {
     });
 
 
-    bridge.trigger({name: 'mainwindow:open'});
+    bridge.trigger({name: 'juice:open'});
 });

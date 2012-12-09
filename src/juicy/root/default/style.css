@@ -13,7 +13,7 @@
   src: url('./assets/fonts/OpenSans-Regular.ttf') format('truetype');
 }
 
-body {
+body#juice {
     font-family: 'Open Sans';
     background-color: #B82C29;
     font-size: 20px;
@@ -98,7 +98,7 @@ body {
 }
 
 
-#juice {
+#content {
     position: absolute;
     left: 5px;
     top: 100px;
@@ -106,4 +106,16 @@ body {
     bottom: 5px;
     background-color: white;
     border: 1px solid #9f7653;
+}
+
+#pitchers-board {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#pitchers-board {
+    background-color: #FFDD73;
 }

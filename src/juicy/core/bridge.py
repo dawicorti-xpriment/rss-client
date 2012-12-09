@@ -15,10 +15,11 @@ class Bridge(QtCore.QObject):
 
     @QtCore.Slot(str)
     def listen(self, name):
-        juicy.mq.listen(name, self.on_message)
+        juicy.mq.listen(name, Bridge.on_message)
 
-    def on_message(self, message):
-        self.signal.emit(json.dumps(message))
+    @staticmethod
+    def on_message(message):
+        Bridge.signal.emit(json.dumps(message))
 
     @QtCore.Slot(str)
     def send(self, raw):
