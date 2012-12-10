@@ -14,8 +14,10 @@ class PitchersBoard(QtGui.QDialog):
 
     def __init__(self, parent):
         super(PitchersBoard, self).__init__(parent)
-        conf = config.get('pitchersboard')
-        self.setFixedSize(conf['width'], conf['height'])
+        self.setFixedSize(
+            config.get('pitchersboard_width'),
+            config.get('pitchersboard_height')
+        )
         juicy.mq.listen('pitchersboard:open', self.open)
         self.loadwebview()
 

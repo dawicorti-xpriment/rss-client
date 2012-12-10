@@ -19,6 +19,9 @@ class Config(object):
                 self._data.update(json.loads(input_file.read()))
         self.save()
 
+    def data(self):
+        return self._data
+
     def save(self):
         parent_dir = os.path.dirname(self._path)
         if not os.path.exists(parent_dir):
@@ -41,14 +44,8 @@ class Config(object):
 
 
 config = Config('config.json', {
-    'juice': {
-        'width': 300,
-        'height': 600
-    },
-    'pitchersboard': {
-        'width': 640,
-        'height': 480,
-        'pitchers_url':
-        'https://raw.github.com/dawicorti/juicy/master/pitchers.json'
-    }
+    'juice_width': 300,
+    'juice_height': 600,
+    'pitchersboard_width': 640,
+    'pitchersboard_height': 480,
 })

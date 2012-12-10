@@ -6,6 +6,7 @@ from PySide import QtWebKit
 
 import juicy
 from juicy.core.config import config
+from juicy.core.config import Config
 from juicy.core.bridge import Bridge
 from juicy.ui.pitchersboard import PitchersBoard
 
@@ -28,13 +29,12 @@ class Juice(QtGui.QMainWindow):
         self.tray_icon.activated.connect(self.show)
         self.tray_icon.show()
         rect = self.geometry()
-        conf = config.get('juice')
-        if conf.get('x') is not None:
-            rect.setX(conf.get('x'))
-        if conf.get('y') is not None:
-            rect.setY(conf.get('y'))
-        width = conf.get('width')
-        height = conf.get('height')
+        if config.get('juice_x') is not None:
+            rect.setX(config.get('juice_x'))
+        if config.get('juice_y') is not None:
+            rect.setY(config.get('juice_y'))
+        width = config.get('juice_width')
+        height = config.get('juice_height')
         rect.setWidth(width)
         rect.setHeight(height)
         self.setGeometry(rect)
@@ -51,7 +51,7 @@ class Juice(QtGui.QMainWindow):
             juicy.mq.send({
                 'name': 'config:send',
                 'module': message['module'],
-                'data': config.get(message['module'], {})
+                'data': Config(message['module'] + '.json').data()
             })
 
     def open(self, message):
@@ -77,15 +77,13 @@ class Juice(QtGui.QMainWindow):
     def resizeEvent(self, event):
         rect = self.geometry()
         self.webview.setGeometry(0, 0, rect.width(), rect.height())
-        conf = config.get('juice')
-        conf['height'] = rect.height()
+        config.set('juice_height', rect.height())
         config.save()
 
     def moveEvent(self, event):
         rect = self.geometry()
-        conf = config.get('juice')
-        conf['x'] = rect.x()
-        conf['y'] = rect.y()
+        config.set('juice_x', rect.x())
+        config.set('juice_y', rect.y())
         config.save()
 
     def quit(self, message):
@@ -94,5 +92,3 @@ class Juice(QtGui.QMainWindow):
     def closeEvent(self, event):
         event.ignore()
         self.hide()
-
-
