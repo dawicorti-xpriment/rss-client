@@ -44,6 +44,15 @@ class Juice(QtGui.QMainWindow):
         self.pitchers_board = PitchersBoard(self)
         juicy.mq.listen('juice:quit', self.quit)
         juicy.mq.listen('juice:open', self.open)
+        juicy.mq.listen('config:get', self.get_config)
+
+    def get_config(self, message):
+        if 'module' in message:
+            juicy.mq.send({
+                'name': 'config:send',
+                'module': message['module'],
+                'data': config.get(message['module'], {})
+            })
 
     def open(self, message):
         self.show()

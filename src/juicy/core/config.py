@@ -1,7 +1,6 @@
 import os
 import json
 
-from PySide import QtGui
 
 class Config(object):
 
@@ -48,6 +47,8 @@ config = Config('config.json', {
     },
     'pitchersboard': {
         'width': 600,
-        'height': 300
+        'height': 300,
+        'pitchers_url':
+        'https://raw.github.com/dawicorti/juicy/master/pitchers.json'
     }
 })

@@ -21,7 +21,6 @@ $(function () {
         };
         var target = document.getElementById('pitchers-list');
         this.spinner = new Spinner(opts).spin(target);
-        console.log($('#pitchers-list'));
     };
 
     PitchersBoard.prototype.open = function () {
@@ -30,21 +29,37 @@ $(function () {
                 .attr('id', 'pitchers-list')
         );
         this.showSpinner();
-        this.retreiveList();
-    };
-
-    PitchersBoard.prototype.retreiveList = function () {
-        $.ajax({
-            url: "https://raw.github.com/dawicorti/juicy/master/pitchers.json",
-            dataType: 'jsonp',
-        }).done(function(data) { 
-            console.log(data);
+        var that = this;
+        juicy.getConfig('pitchersboard', function (config) {
+            that.config = config;
+            that.retreiveList();  
         });
     };
 
-    PitchersBoard.prototype.showList = function () {
+    PitchersBoard.prototype.retreiveList = function () {
+        var next = this.showList;
+        $.ajax({
+            url: this.config.pitchers_url
+        }).done(function(data) {
+            next(JSON.parse(data).pitchers);
+        });
+    };
 
-    }
+    PitchersBoard.prototype.showList = function (pitchers) {
+        console.log(pitchers)
+        pitchers.forEach(this.getPitcherDescription);
+    };
+
+    PitchersBoard.prototype.getPitcherDescription = function (url) {
+        console.log(url);
+        /*
+        $.ajax({
+            url: url
+        }).done(function(data) { 
+            //next(JSON.parse(data).pitchers);
+        });
+        */
+    };
 
     var pitchersBoard = new PitchersBoard();
     pitchersBoard.open();

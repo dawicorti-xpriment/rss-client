@@ -23,6 +23,10 @@ class PitchersBoard(QtGui.QDialog):
         rect = self.geometry()
         self.webview = QtWebKit.QWebView(self)
         self.webview.setPage(WebPage('pitchers-list'))
+        self.webview.settings().setAttribute(
+            QtWebKit.QWebSettings.LocalContentCanAccessRemoteUrls,
+            True
+        )
         self.webview.setGeometry(0, 0, rect.width(), rect.height())
         self.webview.load(
             QtCore.QUrl(
