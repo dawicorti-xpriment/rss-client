@@ -4,7 +4,7 @@ import json
 
 class Config(object):
 
-    def __init__(self, path, defaults=None):
+    def __init__(self, path, defaults=None, fixed=None):
         self._path = os.path.join(
             os.path.expanduser('~'),
             '.juicy',
@@ -17,6 +17,8 @@ class Config(object):
         if os.path.exists(self._path):
             with open(self._path) as input_file:
                 self._data.update(json.loads(input_file.read()))
+        if fixed is not None:
+            self._data.update(fixed)
         self.save()
 
     def data(self):
@@ -43,9 +45,14 @@ class Config(object):
         return self.get(name, default)
 
 
-config = Config('config.json', {
-    'juice_width': 300,
-    'juice_height': 600,
-    'pitchersboard_width': 640,
-    'pitchersboard_height': 480,
-})
+config = Config(
+    'config.json',
+    defaults={
+        'juice_height': 600,
+    },
+    fixed={
+        'juice_width': 300,
+        'pitchersboard_width': 640,
+        'pitchersboard_height': 480,
+    }
+)
