@@ -46,8 +46,8 @@ config = Config('config.json', {
         'height': 600
     },
     'pitchersboard': {
-        'width': 600,
-        'height': 300,
+        'width': 640,
+        'height': 480,
         'pitchers_url':
         'https://raw.github.com/dawicorti/juicy/master/pitchers.json'
     }
