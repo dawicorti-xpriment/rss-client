@@ -160,6 +160,9 @@ body#pitchers-board {
 
 #pitchers-list .pitcher {
     position: relative;
+    background-color: #FFF3CC;
+    color: #8E211F;
+    display: inline-block;
     width: 100px;
     height: 100px;
     font-size: 12px;
