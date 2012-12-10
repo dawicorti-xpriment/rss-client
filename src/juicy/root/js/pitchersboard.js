@@ -37,21 +37,22 @@ $(function () {
     };
 
     PitchersBoard.prototype.retreiveList = function () {
-        var next = this.showList;
+        var that = this;
         $.ajax({
             url: this.config.pitchers_url
         }).done(function(data) {
-            next(JSON.parse(data).pitchers);
+            var description = JSON.parse(data);
+            console.log(description);
+            that.showList(description.pitchers);
         });
     };
 
     PitchersBoard.prototype.showList = function (pitchers) {
-        console.log(pitchers)
-        pitchers.forEach(this.getPitcherDescription);
+        $.each(pitchers, this.getPitcherDescription);
     };
 
-    PitchersBoard.prototype.getPitcherDescription = function (url) {
-        console.log(url);
+    PitchersBoard.prototype.getPitcherDescription = function (pitcher) {
+        //console.log(pitcher.repository);
         /*
         $.ajax({
             url: url

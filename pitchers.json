@@ -1,5 +1,6 @@
 {
     "pitchers": [
-        {"repository": "dawicorti/juicy-pitcher-rss", "commit": "28e65c3b2bf8f283459682d93e8149302037d6f4"}
+        {"repository": "dawicorti/juicy-pitcher-rss", "commit": "28e65c3b2bf8f283459682d93e8149302037d6f4"},
+        {"repository": "dawicorti/juicy-pitcher-twitter", "commit": "28e65c3b2bf8f283459682d93e8149302037d6f4"}
     ]
 }
