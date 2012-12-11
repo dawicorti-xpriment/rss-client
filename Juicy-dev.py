@@ -9,9 +9,7 @@ sys.path.append(
     )
 )
 
-from PySide import QtGui
-from juicy.ui.juice import Juice
+from juicy.client import JuicyClient
 
-app = QtGui.QApplication(sys.argv)
-juice = Juice()
-app.exec_()
+client = JuicyClient()
+client.run()

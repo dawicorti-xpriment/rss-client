@@ -6,9 +6,7 @@ from PySide import QtWebKit
 
 import juicy
 from juicy.core.config import config
-from juicy.core.config import Config
 from juicy.core.bridge import Bridge
-from juicy.ui.pitchersboard import PitchersBoard
 
 
 class Juice(QtGui.QMainWindow):
@@ -41,21 +39,6 @@ class Juice(QtGui.QMainWindow):
         self.setMaximumWidth(width)
         self.setMinimumWidth(width)
         self.loadwebview()
-        self.pitchers_board = PitchersBoard(self)
-        juicy.mq.listen('juice:quit', self.quit)
-        juicy.mq.listen('juice:open', self.open)
-        juicy.mq.listen('config:get', self.get_config)
-
-    def get_config(self, message):
-        if 'module' in message:
-            juicy.mq.send({
-                'name': 'config:send',
-                'module': message['module'],
-                'data': Config(message['module'] + '.json').data()
-            })
-
-    def open(self, message):
-        self.show()
 
     def loadwebview(self):
         rect = self.geometry()
@@ -64,7 +47,7 @@ class Juice(QtGui.QMainWindow):
         self.webview.load(
             QtCore.QUrl(
                 'file:///' + os.path.join(
-                    juicy.rootpath,
+                    juicy.homepath,
                     'juice.html'
                 ).lstrip('/').replace('\\', '/')
             )
@@ -85,9 +68,6 @@ class Juice(QtGui.QMainWindow):
         config.set('juice_x', rect.x())
         config.set('juice_y', rect.y())
         config.save()
-
-    def quit(self, message):
-        QtGui.QApplication.quit()
 
     def closeEvent(self, event):
         event.ignore()

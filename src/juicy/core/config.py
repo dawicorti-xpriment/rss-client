@@ -1,13 +1,14 @@
 import os
 import json
 
+import juicy
+
 
 class Config(object):
 
     def __init__(self, path, defaults=None, fixed=None):
         self._path = os.path.join(
-            os.path.expanduser('~'),
-            '.juicy',
+            juicy.homepath,
             path
         )
         if defaults is not None:
@@ -48,7 +49,7 @@ class Config(object):
 config = Config(
     'config.json',
     defaults={
-        'juice_height': 600,
+        'juice_height': 600
     },
     fixed={
         'juice_width': 300,

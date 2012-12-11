@@ -16,4 +16,9 @@ assetspath = os.path.join(
     'assets'
 )
 
+homepath = os.path.join(
+    os.path.expanduser('~'),
+    '.juicy'
+)
+
 mq = JuicyMQ()
