@@ -24,16 +24,42 @@ $(function () {
     };
 
     PitchersBoard.prototype.open = function () {
-        $('body').append(
-            $('<div></div')
-                .attr('id', 'pitchers-list')
-        );
         this.showSpinner();
         var that = this;
         juicy.getConfig('pitchersboard', function (config) {
             that.config = config;
-            that.retreiveList();  
+            bridge.on('pitchers:send', function (message) {
+                that.readInstalledPitchers(message);
+            });
+            bridge.trigger({name: 'pitchers:get'});
         });
+        this.bindTabs();
+    };
+
+    PitchersBoard.prototype.readInstalledPitchers = function (message) {
+        this.pitchers = message.pitchers;
+        this.retreiveList();
+    };
+
+    PitchersBoard.prototype.bindTabs = function () {
+        var that = this;
+        $.each($('.tab'), function (index, tab) {
+            $(tab).click(function (event) {
+                that.onClickTab($(event.delegateTarget));
+            });
+        });
+    };
+
+    PitchersBoard.prototype.onClickTab = function (activeTab) {
+        $.each($('.tab'), function (index, tab) {
+            var jtab = $(tab);
+            if(jtab.hasClass('active')) {
+                $('#pitchers-list .frame.' + jtab.attr('title')).removeClass('active');
+                jtab.removeClass('active');
+            }
+        });
+        $('#pitchers-list .frame.' + activeTab.attr('title')).addClass('active');
+        activeTab.addClass('active');
     };
 
     PitchersBoard.prototype.retreiveList = function () {
@@ -82,7 +108,7 @@ $(function () {
                             $('<span></span>').addClass('author').html('by ' + infos.author),
                             $('<img />').attr('src', icon)
                         );
-        $('#pitchers-list').append(thumb);
+        $('#pitchers-list .frame.available').append(thumb);
     };
 
     var pitchersBoard = new PitchersBoard();

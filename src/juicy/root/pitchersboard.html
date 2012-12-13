@@ -5,11 +5,22 @@
         <script type="text/javascript" src="./js/bridge.js"></script>
         <script type="text/javascript" src="./js/juicy-api.js"></script>
         <script type="text/javascript" src="./js/spin.js"></script>
+        <script type="text/javascript" src="./js/handlebars.js"></script>
         <script type="text/javascript" src="./js/pitchersboard.js"></script>
     </head>
     <body id="pitchers-board">
         <header id="header">
             <h1><span class="label">Pitchers</span></h1>
+            <div class="tab available active" title="available">
+                <span class="label">available</span>
+            </div>
+            <div class="tab installed" title="installed" >
+                <span class="label">installed</span>
+            </div>
         </header>
+        <div id="pitchers-list">
+            <div class="frame available active"></div>
+            <div class="frame installed"></div>
+        </div>
     </body>
 </html>

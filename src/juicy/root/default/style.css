@@ -212,3 +212,35 @@ body#pitchers-board {
     width: 90px;
     height: auto;
 }
+
+#header .tab {
+    position: absolute;
+    font-size: 12px;
+    bottom: 5px;
+}
+
+.tab .label {
+    color: white;
+    font-weight: bold;
+    cursor: hand;    
+}
+
+.tab.installed {
+    right: 10px;
+}
+
+.tab.available {
+    right: 80px;
+}
+
+.tab.active .label {
+    color: #FFC200;
+}
+
+.frame {
+    display: none;
+}
+
+.frame.active {
+    display: block;
+}

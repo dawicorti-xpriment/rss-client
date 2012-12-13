@@ -1,5 +1,6 @@
 import os
 import shutil
+import json
 
 import juicy
 
@@ -33,3 +34,33 @@ def copy_to_home():
         juicy.rootpath,
         juicy.homepath
     )
+
+
+def get_installed_pitchers():
+    pitchers = []
+    try:
+        subpathes_list = os.listdir(
+            os.path.join(
+                juicy.homepath,
+                'pitchers'
+            )
+        )
+    except:
+        subpathes_list = []
+    for subpath in subpathes_list:
+        try:
+            path = os.path.join(
+                juicy.homepath,
+                'pitchers',
+                subpath,
+                'pitcher.json'
+            )
+            with open(path) as pitcher_file:
+                infos = json.loads(pitcher_file.read())
+            pitchers.append({
+                'repository': subpath,
+                'infos': infos
+            })
+        except:
+            pass
+    return pitchers
